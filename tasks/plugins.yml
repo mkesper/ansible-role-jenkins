@@ -55,6 +55,8 @@
     timeout: "{{ jenkins_plugin_timeout }}"
     updates_expiration: "{{ jenkins_plugin_updates_expiration }}"
     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}{{ jenkins_url_prefix }}"
+    method: POST
+    return_content: yes
     with_dependencies: "{{ jenkins_plugins_install_dependencies }}"
   with_items: "{{ jenkins_plugins }}"
   when: jenkins_admin_password != ""
@@ -66,6 +68,8 @@
     url_token: "{{ jenkins_admin_token }}"
     updates_expiration: "{{ jenkins_plugin_updates_expiration }}"
     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}{{ jenkins_url_prefix }}"
+    method: POST
+    return_content: yes
     with_dependencies: "{{ jenkins_plugins_install_dependencies }}"
   with_items: "{{ jenkins_plugins }}"
   when: jenkins_admin_token != ""
